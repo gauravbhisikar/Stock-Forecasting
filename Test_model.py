@@ -5,26 +5,27 @@ from PlotSplit import *
 from CleanData import TrainingData
 from datetime import date
 from model import Train_model
-
+import time
 
 Ticker = 'MSFT'
 
 
-Stock_Closing_Price = TrainingData(Ticker)
-
-data = Stock_Closing_Price.getdata()
-
-
-X = data.filter(['close'])
-X = X.iloc[::-1]
-X = X.reset_index()['close']
-dataset = X.values
-
-scaler = MinMaxScaler(feature_range  = (0,1))
-external = scaler.fit(np.array(dataset).reshape(-1,1))
 
 try:
 	model = tf.keras.models.load_model(f'D:\\Github\\stockpredict\\Stock-forcast\\Saved_model\\{Ticker}.h5')
+
+	Stock_Closing_Price = TrainingData(Ticker)
+
+	data = Stock_Closing_Price.getdata()
+
+
+	X = data.filter(['close'])
+	X = X.iloc[::-1]
+	X = X.reset_index()['close']
+	dataset = X.values
+
+	scaler = MinMaxScaler(feature_range  = (0,1))
+	external = scaler.fit(np.array(dataset).reshape(-1,1))
 except:
 	Stock_Closing_Price = TrainingData(Ticker)
 	NAME = f"{Stock_Closing_Price.identifier}.h5"
@@ -32,6 +33,16 @@ except:
 	x_train,x_test,y_train, y_test,original_data = Stock_Closing_Price.get_clean_data()
 	Train_model(x_train,y_train,x_test,y_test,NAME,original_data)
 	model = tf.keras.models.load_model(f'D:\\Github\\stockpredict\\Stock-forcast\\Saved_model\\{Ticker}.h5')
+	time.sleep(120)
+	Stock_Closing_Price = TrainingData(Ticker)
+	data = Stock_Closing_Price.getdata()
+	X = data.filter(['close'])
+	X = X.iloc[::-1]
+	X = X.reset_index()['close']
+	dataset = X.values
+
+	scaler = MinMaxScaler(feature_range  = (0,1))
+	external = scaler.fit(np.array(dataset).reshape(-1,1))
 
 
 

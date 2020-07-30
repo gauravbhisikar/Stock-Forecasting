@@ -46,6 +46,8 @@ def Train_model(x_train,y_train,x_test,y_test,name,Data):
 
 	model.save(f'D:\\Github\\stockpredict\\Stock-forcast\\Saved_model\\{name}', save_format='h5')
 	plot_data(Data,train_prediction,test_prediction)
+
+	
 	
 	
 	

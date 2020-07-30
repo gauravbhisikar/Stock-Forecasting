@@ -75,18 +75,18 @@ class TrainingData:
 		dataset = X.values
 		# plt.plot(dataset)
 		# plt.show()
-		self.original_data = dataset
 		scaler = MinMaxScaler(feature_range  = (0,1))
 		scaled_data = scaler.fit_transform(np.array(dataset).reshape(-1,1))
 		train,test = split_dataset(scaled_data)
 		X_train,Y_train = create_dataset(train,100)
 		X_test,Y_test = create_dataset(test,100)
-		print(X_train.shape,Y_train.shape)
-		print(X_test.shape,Y_test.shape)
+		# print(X_train.shape,Y_train.shape)
+		# print(X_test.shape,Y_test.shape)
+		
 
 		X_train = np.reshape(X_train,(X_train.shape[0],X_train.shape[1],1))
 		X_test = np.reshape(X_test,(X_test.shape[0],X_test.shape[1],1))
-		print("X_train: "+ str(X_train.shape) +" Y_train: "+ str(Y_train.shape))
-		print("X_test: "+ str(X_test.shape)+" Y_test: "+ str(Y_test.shape))
+		# print("X_train: "+ str(X_train.shape) +" Y_train: "+ str(Y_train.shape))
+		# print("X_test: "+ str(X_test.shape)+" Y_test: "+ str(Y_test.shape))
 		return X_train,X_test,Y_train,Y_test,dataset
 

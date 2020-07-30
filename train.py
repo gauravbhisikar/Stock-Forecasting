@@ -7,7 +7,7 @@ from model import Train_model
 Stock_Closing_Price = TrainingData('AAPL')
 
 
-NAME = f"{Stock_Closing_Price.identifier}_{date.today()}.h5"
+NAME = f"{Stock_Closing_Price.identifier}.h5"
 
 
 Stock_Closing_Price.getdata()

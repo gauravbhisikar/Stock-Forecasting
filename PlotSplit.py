@@ -26,12 +26,16 @@ def split_dataset(dataframe):
 	training_size=int(len(dataframe)*0.80)
 	test_size=len(dataframe)-training_size
 	train_data,test_data=dataframe[0:training_size,:],dataframe[training_size:len(dataframe),:1]
-	print("training_size: ",training_size)
-	print("test_size: ",test_size)
+	# print("training_size: ",training_size)
+	# print("test_size: ",test_size)
 	return train_data,test_data	
 
 
 
+def split_model_test_dataset(dataframe):
+	training_size=int(len(dataframe))
+	train_data=dataframe[0:training_size,:]
+	return train_data
 
 def create_dataset(dataset, time_step=1):
 	dataX, dataY = [], []
@@ -41,6 +45,12 @@ def create_dataset(dataset, time_step=1):
 		dataY.append(dataset[i + time_step, 0])
 	return np.array(dataX), np.array(dataY)	
 
+def create_model_test_dataset(dataset, time_step=1):
+	dataX = []
+	for i in range(len(dataset)-time_step-1):
+		a = dataset[i:(i+time_step), 0]   
+		dataX.append(a)
+	return np.array(dataX)
 
 
 
@@ -57,10 +67,10 @@ def plot_data(Original_data,train_prediction,test_prediction):
 	test_plot[:] = np.nan
 	test_prediction = test_prediction.tolist()
 
-	print("len Data",len(Original_data))
-	print("train_prediction",len(train_prediction))
-	print("test_prediction",len(test_prediction))
-	print("len test_plot",len(test_plot))
+	# print("len Data",len(Original_data))
+	# print("train_prediction",len(train_prediction))
+	# print("test_prediction",len(test_prediction))
+	# print("len test_plot",len(test_plot))
 
 	temp = 0
 	for i in range(len(train_prediction),len(train_prediction)+len(test_prediction)):
@@ -81,6 +91,17 @@ def plot_data(Original_data,train_prediction,test_prediction):
 	plt.show()
 
 
+def plot_predict(Original_data,prediction):
+
+	
+	plt.figure(figsize=(16,8))
+	plt.title("Prediction")
+	plt.xlabel('Date')
+	plt.ylabel('Closeing Price',fontsize=18)
+	plt.plot(Original_data)
+	plt.plot(prediction)
+	plt.legend(['Original Data','Prediction'],loc='lower right')
+	plt.show()
 
 
 	

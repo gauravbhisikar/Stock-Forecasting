@@ -44,6 +44,7 @@ def Train_model(x_train,y_train,x_test,y_test,name,Data):
 	print("RMSE train_prediction: ",math.sqrt(mean_squared_error(y_train,train_prediction)))
 	print("RMSE test_prediction: ",math.sqrt(mean_squared_error(y_test,test_prediction)))
 
+	model.save(f'D:\\Github\\stockpredict\\Stock-forcast\\Saved_model\\{name}', save_format='h5')
 	plot_data(Data,train_prediction,test_prediction)
 	
 	

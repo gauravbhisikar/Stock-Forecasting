@@ -7,7 +7,7 @@ from datetime import date
 from model import Train_model
 import time
 
-Ticker = 'MSFT'
+Ticker = 'CEO'
 
 
 
@@ -28,12 +28,13 @@ try:
 	external = scaler.fit(np.array(dataset).reshape(-1,1))
 except:
 	Stock_Closing_Price = TrainingData(Ticker)
+	print("TICKER: ",Ticker)
 	NAME = f"{Stock_Closing_Price.identifier}.h5"
 	Stock_Closing_Price.getdata()
 	x_train,x_test,y_train, y_test,original_data = Stock_Closing_Price.get_clean_data()
 	Train_model(x_train,y_train,x_test,y_test,NAME,original_data)
 	model = tf.keras.models.load_model(f'D:\\Github\\stockpredict\\Stock-forcast\\Saved_model\\{Ticker}.h5')
-	time.sleep(120)
+	time.sleep(20)
 	Stock_Closing_Price = TrainingData(Ticker)
 	data = Stock_Closing_Price.getdata()
 	X = data.filter(['close'])

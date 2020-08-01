@@ -30,7 +30,7 @@ next_page = '' # str | Gets the next page of data from a previous API call (opti
 
 class TrainingData:
 	def __init__(self,identifier):
-		intrinio_sdk.ApiClient().configuration.api_key['api_key'] = 'OjYwYTkwN2VlMzc1YjM3Mjc4NWM0YmFjM2MxN2E4Mzgz'
+		intrinio_sdk.ApiClient().configuration.api_key['api_key'] = 'YOUR API KEY'
 		self.identifier = identifier
 		self.start_date = days_ago
 		self.end_date = today
@@ -69,6 +69,7 @@ class TrainingData:
 
 	def get_clean_data(self):
 		data = pd.read_csv(f"D:\\PROJECTS\\python projects\\stockpredict\\Data\\{self.identifier}_daily_with_date.csv")
+		print("Cleaning data  of ",self.identifier)
 		X = data.filter(['close'])
 		X = X.iloc[::-1]
 		X = X.reset_index()['close']

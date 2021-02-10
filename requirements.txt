@@ -1,6 +1,6 @@
 intrinio-sdk==5.1.0
 Keras==2.3.1
 scikit-learn==0.22.1
-tensorflow==2.0.1
+tensorflow==2.4.0
 pandas==0.25.3
 matplotlib==3.1.2

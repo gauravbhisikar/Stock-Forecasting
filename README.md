@@ -1,4 +1,4 @@
-<H1>**#Usage**</H1>
+<H1><strong>#Usage</strong></H1>
 <br>
 <H2>To create and train new model change Ticker in TrainingData object to desired Ticker and run</H2?
 <br>
